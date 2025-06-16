@@ -1,0 +1,13 @@
+:root {
+	// base
+	--content-width: 1260px;
+	--container-offset: 20px;
+	--container-width: calc(var(--content-width) + (var(--container-offset) * 2));
+	--font-size: 18px;
+	--font-ubuntu: 'Ubuntu', sans-serif;
+	--font-open-sans: 'Open Sans', sans-serif;
+	// font-family: var(--font-open-sans);
+	// font-family: var(--font-ubuntu);
+
+	// colors
+}
