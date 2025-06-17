@@ -1,13 +1,17 @@
 :root {
 	// base
-	--content-width: 1260px;
+	--content-width: 1240px;
 	--container-offset: 20px;
 	--container-width: calc(var(--content-width) + (var(--container-offset) * 2));
 	--font-size: 18px;
-	--font-ubuntu: 'Ubuntu', sans-serif;
-	--font-open-sans: 'Open Sans', sans-serif;
-	// font-family: var(--font-open-sans);
-	// font-family: var(--font-ubuntu);
+	--font-golos: 'GolosText', sans-serif;
 
 	// colors
+	--black-color: #000;
+	--text-color: #313131;
+	--light-gray-color: #f7f7f7;
+	--yellow-color: #ecf96e;
+	--purple-color: #9278FA;
+	--page-bg-color: #f2f2f4;
+	--white-color: #fff;
 }
