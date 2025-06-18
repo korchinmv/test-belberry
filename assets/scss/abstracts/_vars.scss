@@ -1,6 +1,6 @@
 :root {
 	// base
-	--content-width: 1240px;
+	--content-width: 1280px;
 	--container-offset: 20px;
 	--container-width: calc(var(--content-width) + (var(--container-offset) * 2));
 	--font-size: 18px;
@@ -8,6 +8,7 @@
 
 	// colors
 	--black-color: #000;
+	--blue-color: #0d08a4;
 	--text-color: #313131;
 	--light-gray-color: #f7f7f7;
 	--yellow-color: #ecf96e;

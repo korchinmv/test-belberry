@@ -115,3 +115,65 @@ main {
 		padding: 13px 19px;
 	}
 }
+
+.primary-button {
+	background-color: var(--white-color);
+	padding: 10px 9px 10px 45px;
+	border-radius: 100px;
+	position: relative;
+	height: 50px;
+	transition: all 0.3s;
+	min-width: 142px;
+
+	&:hover {
+		padding: 10px 16px 10px 0;
+
+		.primary-button__text {
+			transform: translateX(-100%);
+
+		}
+
+		.primary-button__icon-wrap {
+			width: 85%;
+			height: 42px;
+			border-radius: 100px;
+			justify-content: end;
+			padding-right: 8px;
+
+			@media screen and (width <=576px) {
+				width: 95%;
+			}
+		}
+	}
+
+
+	&__icon-wrap {
+		background-color: var(--yellow-color);
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 30px;
+		height: 30px;
+		position: absolute;
+		top: 50%;
+		transform: translate(0, -50%);
+		left: 9px;
+		flex-shrink: 0;
+		transition: all 0.3s;
+	}
+
+	&__text {
+		font-weight: 600;
+		font-size: 16px;
+		transform: translateX(0);
+		position: relative;
+		z-index: 2;
+	}
+}
+
+.slider {
+	.swiper {
+		overflow: visible !important;
+	}
+}

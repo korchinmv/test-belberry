@@ -61,7 +61,7 @@
 						</UiMenuItem>
 
 						<UiMenuItem>
-							<NuxtLink class="black-button" to="#">Связаться с нами</NuxtLink>
+							<button class="black-button" to="#">Связаться с нами</button>
 						</UiMenuItem>
 					</UiMenu>
 				</nav>

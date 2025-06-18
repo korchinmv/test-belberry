@@ -1,3 +1,4 @@
 <template>
 	<SectionHero />
+	<SectionServices />
 </template>
