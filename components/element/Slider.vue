@@ -26,9 +26,11 @@
 </script>
 
 <template>
-	<swiper-container class="slider" ref="containerRef">
-		<slot />
-	</swiper-container>
+	<ClientOnly>
+		<swiper-container class="slider" ref="containerRef">
+			<slot />
+		</swiper-container>
+	</ClientOnly>
 
 	<div class="controls">
 		<button class="controls__button" @click="swiper.prev()">

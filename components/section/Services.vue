@@ -6,7 +6,7 @@
 			<div class="services__wrapper">
 				<ElementTitleSection class="services__title" text="Наши услуги" />
 
-				<ElementSlider class="services__slider">
+				<ElementSlider>
 					<swiper-slide class="slider__item">
 						<CardService
 							title="Landing page"
