@@ -25,7 +25,7 @@
 		}
 
 		& > input:checked + span::before {
-			background-image: url("img/check.svg");
+			background-image: url("/img/check.svg");
 			background-color: transparent;
 			background-position: top right;
 			background-size: contain;

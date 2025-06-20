@@ -1,6 +1,7 @@
 <script setup>
 	const containerRef = ref(null);
 	const swiper = useSwiper(containerRef, {
+		loop: true,
 		enabled: true,
 		breakpoints: {
 			1440: {
