@@ -289,7 +289,7 @@
 			max-width: 413px;
 			width: 100%;
 			flex-shrink: 0;
-			background-image: url("img/hero/right-card-bg.png");
+			background-image: url("/img/hero/right-card-bg.png");
 			background-repeat: no-repeat;
 			background-position: center;
 			background-size: cover;
