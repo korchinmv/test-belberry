@@ -1,7 +1,21 @@
+<script setup>
+	defineProps({
+		modelValue: Boolean,
+	});
+
+	const emit = defineEmits(["update:modelValue"]);
+
+	const handleChange = (e) => {
+		emit("update:modelValue", e.target.checked);
+	};
+</script>
+
 <template>
 	<label class="custom-checkbox">
 		<input
 			class="custom-checkbox__input visually-hidden"
+			:checked="modelValue"
+			@change="handleChange"
 			name="chechbox"
 			type="checkbox"
 		/>

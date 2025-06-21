@@ -59,12 +59,11 @@
 	.mobile-menu {
 		position: fixed;
 		z-index: 99;
-		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
 		align-items: flex-start;
 		top: 61px;
-		right: left;
+		right: 0;
 		bottom: 0;
 		background-color: var(--white-color);
 		width: 280px;
@@ -76,7 +75,7 @@
 		display: none;
 
 		@media screen and (width <= 1024px) {
-			display: block;
+			display: flex;
 		}
 
 		@media screen and (width <= 768px) {

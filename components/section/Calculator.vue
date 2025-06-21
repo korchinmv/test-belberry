@@ -1,4 +1,6 @@
 <script setup>
+	import { useModalStore } from "~/store/useModalStore";
+
 	const selectedValues = reactive({
 		type: { value: null, label: "" },
 		cms: { value: null, label: "" },
@@ -10,60 +12,64 @@
 	});
 
 	const siteTypes = [
-		{ value: "5000", label: "Лендинг" },
-		{ value: "10000", label: "Корпоративный сайт" },
-		{ value: "15000", label: "Интернет-магазин" },
+		{ value: "5000", label: "Лендинг", id: 1 },
+		{ value: "10000", label: "Корпоративный сайт", id: 2 },
+		{ value: "15000", label: "Интернет-магазин", id: 3 },
 	];
 
 	const cmsTypes = [
-		{ value: "5000", label: "WordPress" },
-		{ value: "10000", label: "1C-Битрикс" },
-		{ value: "15000", label: "OpenCart" },
+		{ value: "5000", label: "WordPress", id: 1 },
+		{ value: "10000", label: "1C-Битрикс", id: 2 },
+		{ value: "15000", label: "OpenCart", id: 3 },
 	];
 
-	const themes = [
-		{ value: "5000", label: "Портфолио" },
-		{ value: "10000", label: "Бизнес" },
-		{ value: "15000", label: "Электронная коммерция" },
+	const themesTypes = [
+		{ value: "5000", label: "Портфолио", id: 1 },
+		{ value: "10000", label: "Бизнес", id: 2 },
+		{ value: "15000", label: "Электронная коммерция", id: 3 },
 	];
 
-	const designs = [
-		{ value: "5000", label: "Стандарт" },
-		{ value: "10000", label: "Профессиональный" },
-		{ value: "15000", label: "Уникальный" },
+	const designsTypes = [
+		{ value: "5000", label: "Стандарт", id: 1 },
+		{ value: "10000", label: "Профессиональный", id: 2 },
+		{ value: "15000", label: "Уникальный", id: 3 },
 	];
 
-	const services = [
-		{ value: "5000", label: "SEO оптимизация" },
-		{ value: "10000", label: "Контекстная реклама" },
-		{ value: "15000", label: "Мобильная версия" },
+	const servicesTypes = [
+		{ value: "5000", label: "SEO оптимизация", id: 1 },
+		{ value: "10000", label: "Контекстная реклама", id: 2 },
+		{ value: "15000", label: "Мобильная версия", id: 3 },
 	];
 
-	const selectOption = (field, label, value) => {
-		selectedValues[field] = {
-			label,
-			value: Number(value),
-		};
+	const modalStore = useModalStore();
+
+	const openApplicationModal = () => {
+		modalStore.open("application", { title: "Вход в систему" });
 	};
 
 	const sumService = computed(() => {
-		return Object.values(selectedValues).reduce(
-			(total, current) => total + Number(current.value || 0),
-			0
+		return (
+			Number(selectedValues.service.value) +
+			Number(selectedValues.design.value) +
+			Number(selectedValues.theme.value) +
+			Number(selectedValues.cms.value) +
+			Number(selectedValues.type.value)
 		);
 	});
 
-	// const formattedSum = computed(() => {
-	// 	return sumService.value.toLocaleString("ru-RU");
-	// });
+	const isSubmitDisabled = computed(() => {
+		return sumService.value === 0 || !selectedValues.checkbox;
+	});
 
-	watch(
-		selectedValues,
-		(newVal) => {
-			console.log("Изменения в selectedValues:", newVal);
-		},
-		{ deep: true }
-	);
+	const isModalOpen = ref(false);
+
+	const openModal = () => {
+		isModalOpen.value = true;
+	};
+
+	const closeModal = () => {
+		isModalOpen.value = false;
+	};
 </script>
 
 <template>
@@ -78,76 +84,36 @@
 							class="calculator__select"
 							defaultValue="Тип сайта"
 							v-model="selectedValues.type"
-						>
-							<div
-								v-for="option in siteTypes"
-								:key="option.value"
-								class="custom-select__option"
-								@click="selectedValues.type = option.label"
-							>
-								{{ option.label }}
-							</div>
-						</FormCustomSelect>
+							:options="siteTypes"
+						/>
 
 						<FormCustomSelect
 							class="calculator__select"
 							defaultValue="Тип CMS"
 							v-model="selectedValues.cms"
-						>
-							<option
-								v-for="option in cmsTypes"
-								:key="option.value"
-								:value="option.value"
-								@click="selectedValues.type = option.label"
-							>
-								{{ option.label }}
-							</option>
-						</FormCustomSelect>
+							:options="cmsTypes"
+						/>
 
 						<FormCustomSelect
 							class="calculator__select"
 							defaultValue="Тематика сайта"
 							v-model="selectedValues.theme"
-						>
-							<option
-								v-for="option in themes"
-								:key="option.value"
-								:value="option.value"
-								@click="selectedValues.type = option.label"
-							>
-								{{ option.label }}
-							</option>
-						</FormCustomSelect>
+							:options="themesTypes"
+						/>
 
 						<FormCustomSelect
 							class="calculator__select"
 							defaultValue="Дизайн сайта"
 							v-model="selectedValues.design"
-						>
-							<option
-								v-for="option in designs"
-								:key="option.value"
-								:value="option.value"
-								@click="selectedValues.type = option.label"
-							>
-								{{ option.label }}
-							</option>
-						</FormCustomSelect>
+							:options="designsTypes"
+						/>
 
 						<FormCustomSelect
 							class="calculator__select"
 							defaultValue="Дополнительные услуги"
 							v-model="selectedValues.service"
-						>
-							<option
-								v-for="option in services"
-								:key="option.value"
-								:value="option.value"
-								@click="selectedValues.type = option.label"
-							>
-								{{ option.label }}
-							</option>
-						</FormCustomSelect>
+							:options="servicesTypes"
+						/>
 
 						<textarea
 							class="calculator__textarea"
@@ -169,12 +135,18 @@
 					</div>
 
 					<div class="calculator__button">
-						<FormButton class="calculator__btn" text="Связаться с нами" />
+						<FormButton
+							class="calculator__btn"
+							text="Связаться с нами"
+							:disabled="isSubmitDisabled"
+							@click="openApplicationModal"
+						/>
 
 						<div class="calculator__policy">
 							<FormCustomCheckbox
 								class="calculator__policy-checkbox"
-								v-model="selectedValues.policy"
+								v-model="selectedValues.checkbox"
+								:checked="selectedValues.checkbox"
 							/>
 
 							<p class="calculator__policy-text">
@@ -201,7 +173,7 @@
 			background-color: var(--text-color);
 			padding: 60px;
 			border-radius: 20px;
-			background-image: url("img/form/bg.png");
+			background-image: url("/img/form/bg.png");
 			background-position: center;
 			background-repeat: no-repeat;
 			background-size: cover;
@@ -295,6 +267,12 @@
 
 		&__btn {
 			margin-bottom: 32px;
+
+			&:disabled {
+				opacity: 0.5;
+				background-color: var(--gray-color);
+				cursor: not-allowed;
+			}
 
 			@media screen and (width <= 768px) {
 				margin-bottom: 16px;

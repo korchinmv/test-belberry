@@ -2,7 +2,11 @@
 	const props = defineProps({
 		modelValue: {
 			type: Object,
-			default: null,
+			default: () => ({ value: null, label: "" }),
+		},
+		options: {
+			type: Array,
+			default: () => [],
 		},
 		defaultValue: {
 			type: String,
@@ -11,19 +15,10 @@
 	});
 
 	const emit = defineEmits(["update:modelValue"]);
-	const slots = useSlots();
 	const isOpen = ref(false);
 
 	const displayValue = computed(() => {
-		if (!props.modelValue) return props.defaultValue;
-
-		const options = slots.default();
-
-		const selectedOption = options.find((option) => {
-			return option.props?.value === props.modelValue.label;
-		});
-
-		return selectedOption?.children || props.modelValue.label;
+		return props.modelValue?.label || props.defaultValue;
 	});
 
 	const toggleDropdown = () => {
@@ -34,8 +29,11 @@
 		isOpen.value = false;
 	};
 
-	const handleOptionClick = (value) => {
-		emit("update:modelValue", value);
+	const handleOptionClick = (option) => {
+		emit("update:modelValue", {
+			value: option.value,
+			label: option.label,
+		});
 		closeDropdown();
 	};
 
@@ -46,18 +44,14 @@
 	onBeforeUnmount(() => {
 		document.removeEventListener("click", closeDropdown);
 	});
-
-	defineExpose({
-		handleOptionClick,
-	});
 </script>
 
 <template>
 	<div class="custom-select" :class="{ 'is-open': isOpen }">
 		<div class="custom-select__selected-option" @click.stop="toggleDropdown">
-			<span class="custom-select__selected-option-text">{{
-				displayValue
-			}}</span>
+			<span class="custom-select__selected-option-text">
+				{{ displayValue }}
+			</span>
 			<Icon
 				class="custom-select__icon"
 				name="ic:round-keyboard-arrow-down"
@@ -67,7 +61,14 @@
 
 		<div v-if="isOpen" class="custom-select__dropdown">
 			<div class="custom-select__dropdown-content">
-				<slot></slot>
+				<div
+					class="custom-select__option"
+					v-for="option in options"
+					:key="option.id"
+					@click="handleOptionClick(option)"
+				>
+					{{ option.label }}
+				</div>
 			</div>
 		</div>
 	</div>
@@ -153,4 +154,3 @@
 		}
 	}
 </style>
-не выводятся деволтные options
