@@ -3,5 +3,7 @@
 	<SectionServices />
 	<SectionCalculator />
 	<div id="modals"></div>
-	<ModalsWrapper />
+	<ClientOnly>
+		<ModalsWrapper />
+	</ClientOnly>
 </template>

@@ -1,5 +1,9 @@
 <script setup>
 	import { useModalStore } from "~/store/useModalStore";
+	import { useSumService } from "~/store/useSumService";
+
+	const modalStore = useModalStore();
+	const sumServiceStore = useSumService();
 
 	const selectedValues = reactive({
 		type: { value: null, label: "" },
@@ -41,35 +45,28 @@
 		{ value: "15000", label: "Мобильная версия", id: 3 },
 	];
 
-	const modalStore = useModalStore();
-
-	const openApplicationModal = () => {
-		modalStore.open("application", { title: "Вход в систему" });
-	};
-
 	const sumService = computed(() => {
-		return (
+		let totalPrice =
 			Number(selectedValues.service.value) +
 			Number(selectedValues.design.value) +
 			Number(selectedValues.theme.value) +
 			Number(selectedValues.cms.value) +
-			Number(selectedValues.type.value)
-		);
+			Number(selectedValues.type.value);
+
+		sumServiceStore.updatePrice(totalPrice);
+		return totalPrice;
 	});
+
+	const openApplicationModal = () => {
+		modalStore.open("application", {
+			title: "Осталось совсем немного!",
+			text: `Мы рассчитали стоимость вашего сайта, она составила ${sumService.value} рублей. Оставьте контакты, и наш менеджер свяжется с вами в ближайшее время.`,
+		});
+	};
 
 	const isSubmitDisabled = computed(() => {
 		return sumService.value === 0 || !selectedValues.checkbox;
 	});
-
-	const isModalOpen = ref(false);
-
-	const openModal = () => {
-		isModalOpen.value = true;
-	};
-
-	const closeModal = () => {
-		isModalOpen.value = false;
-	};
 </script>
 
 <template>

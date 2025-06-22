@@ -63,13 +63,13 @@
 		justify-content: flex-start;
 		align-items: flex-start;
 		top: 61px;
-		right: 0;
+		left: 0;
 		bottom: 0;
 		background-color: var(--white-color);
 		width: 280px;
 		padding: 32px 15px 30px;
 		box-shadow: none;
-		transform: translateX(-100%);
+		transform: translateX(-200%);
 		transition: 0.5s ease;
 		transition-property: transform, box-shadow;
 		display: none;

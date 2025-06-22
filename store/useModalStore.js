@@ -1,16 +1,25 @@
 export const useModalStore = defineStore("modal", {
 	state: () => ({
 		activeModal: null,
-		modalProps: {},
+		props: {
+			title: "",
+			text: "",
+		},
 	}),
 	actions: {
 		open(modalName, props = {}) {
 			this.activeModal = modalName;
-			this.modalProps = props;
+			this.props = {
+				title: props.title || "",
+				text: props.text || "",
+			};
 		},
 		close() {
 			this.activeModal = null;
-			this.modalProps = {};
+			this.props = {
+				title: "",
+				text: "",
+			};
 		},
 	},
 });

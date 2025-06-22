@@ -1,4 +1,27 @@
-<script setup></script>
+<script setup>
+	import { useModalStore } from "~/store/useModalStore";
+	import { useSumService } from "~/store/useSumService";
+	import { storeToRefs } from "pinia";
+
+	const modalStore = useModalStore();
+	const sumServiceStore = useSumService();
+	const { totalPrice } = storeToRefs(sumServiceStore);
+
+	const showTextInModal = computed(() => {
+		if (totalPrice.value > 0) {
+			return `Мы рассчитали стоимость вашего сайта, она составила ${totalPrice.value} рублей. Оставьте контакты, и наш менеджер свяжется с вами в ближайшее время.`;
+		} else {
+			return "Мы рассчитаем стоимость вашего сайта. Оставьте контакты, и наш менеджер свяжется с вами в ближайшее время.";
+		}
+	});
+
+	const openApplicationModal = () => {
+		modalStore.open("application", {
+			title: "Осталось совсем немного!",
+			text: showTextInModal,
+		});
+	};
+</script>
 <template>
 	<header class="header">
 		<div class="container">
@@ -61,7 +84,9 @@
 						</UiMenuItem>
 
 						<UiMenuItem>
-							<button class="black-button" to="#">Связаться с нами</button>
+							<button class="black-button" to="#" @click="openApplicationModal">
+								Связаться с нами
+							</button>
 						</UiMenuItem>
 					</UiMenu>
 				</nav>
