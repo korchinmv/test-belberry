@@ -46,12 +46,6 @@
 <style lang="scss">
 	.slider::part(container) {
 		overflow: visible !important;
-
-		@media screen and (width <= 768px) {
-			overflow: hidden !important;
-		}
-
-		overflow: hidden;
 	}
 
 	.controls {

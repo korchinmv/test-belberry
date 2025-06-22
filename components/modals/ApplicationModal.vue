@@ -47,7 +47,6 @@
 <style lang="scss">
 	.modal {
 		position: fixed;
-		// overflow-y: auto;
 		top: 0;
 		left: 0;
 		right: 0;

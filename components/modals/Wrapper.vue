@@ -2,16 +2,16 @@
 	import { useModalStore } from "~/store/useModalStore";
 	const modalStore = useModalStore();
 
-	watch(
-		() => modalStore.activeModal,
-		(isOpen) => {
-			document.body.style.overflow = isOpen ? "hidden" : "";
-		}
-	);
+	// watch(
+	// 	() => modalStore.activeModal,
+	// 	(isOpen) => {
+	// 		document.body.style.overflow = isOpen ? "hidden" : "";
+	// 	}
+	// );
 
-	onUnmounted(() => {
-		document.body.style.overflow = "";
-	});
+	// onUnmounted(() => {
+	// 	document.body.style.overflow = "";
+	// });
 </script>
 
 <template>
