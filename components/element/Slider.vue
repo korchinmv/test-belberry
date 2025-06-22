@@ -3,6 +3,8 @@
 	const swiper = useSwiper(containerRef, {
 		loop: true,
 		enabled: true,
+		allowTouchMove: true,
+		freeMode: true,
 		breakpoints: {
 			1440: {
 				slidesPerView: 3.2,
@@ -46,6 +48,7 @@
 <style lang="scss">
 	.slider::part(container) {
 		overflow: visible !important;
+		touch-action: pan-y;
 	}
 
 	.controls {

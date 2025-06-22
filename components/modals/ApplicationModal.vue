@@ -57,6 +57,7 @@
 		justify-content: center;
 		align-items: center;
 		z-index: 1000;
+		overflow: visible;
 
 		&__content {
 			background: var(--white-color);
@@ -65,9 +66,11 @@
 			max-width: 820px;
 			width: 100%;
 			position: relative;
+			margin: 0 auto;
 
 			@media screen and (width <= 768px) {
 				padding: 24px 20px;
+				margin: 45px auto 20px;
 			}
 		}
 
@@ -102,11 +105,23 @@
 			position: absolute;
 			top: 24px;
 			right: 24px;
-			background: none;
 			border: none;
+			width: 32px;
+			height: 32px;
+			z-index: 1001;
+
+			span {
+				transition: color 0.3s;
+			}
+
+			&:hover {
+				span {
+					color: var(--purple-color);
+				}
+			}
 
 			@media screen and (width <= 768px) {
-				top: -40px;
+				top: -36px;
 				right: 0;
 
 				span {

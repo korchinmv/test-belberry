@@ -2,16 +2,32 @@
 	import { useModalStore } from "~/store/useModalStore";
 	const modalStore = useModalStore();
 
-	// watch(
-	// 	() => modalStore.activeModal,
-	// 	(isOpen) => {
-	// 		document.body.style.overflow = isOpen ? "hidden" : "";
-	// 	}
-	// );
+	watch(
+		() => modalStore.activeModal,
+		(isOpen) => {
+			if (isOpen) {
+				// Сохраняем текущую позицию скролла
+				const scrollY = window.scrollY;
+				document.body.classList.add("body-lock");
+				document.body.style.top = `-${scrollY}px`;
+			} else {
+				// Восстанавливаем позицию скролла
+				const scrollY = Math.abs(parseInt(document.body.style.top || "0"));
+				document.body.classList.remove("body-lock");
+				document.body.style.top = "";
+				window.scrollTo(0, scrollY);
+			}
+		},
+		{ immediate: true } // Обрабатываем начальное состояние
+	);
 
-	// onUnmounted(() => {
-	// 	document.body.style.overflow = "";
-	// });
+	// Очистка при размонтировании компонента
+	onUnmounted(() => {
+		const scrollY = Math.abs(parseInt(document.body.style.top || "0"));
+		document.body.classList.remove("body-lock");
+		document.body.style.top = "";
+		window.scrollTo(0, scrollY);
+	});
 </script>
 
 <template>
