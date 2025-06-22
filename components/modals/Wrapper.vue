@@ -26,3 +26,29 @@
 		</Transition>
 	</Teleport>
 </template>
+
+<style lang="scss">
+	/* Анимации */
+	.fade-enter-active,
+	.fade-leave-active {
+		transition: opacity 0.3s;
+	}
+
+	.fade-enter-from,
+	.fade-leave-to {
+		opacity: 0;
+	}
+
+	.slide-enter-active,
+	.slide-leave-active {
+		transition: transform 0.3s;
+	}
+
+	.slide-enter-from {
+		transform: translateY(-50px);
+	}
+
+	.slide-leave-to {
+		transform: translateY(50px);
+	}
+</style>

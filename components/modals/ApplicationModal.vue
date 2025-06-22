@@ -47,6 +47,7 @@
 <style lang="scss">
 	.modal {
 		position: fixed;
+		// overflow-y: auto;
 		top: 0;
 		left: 0;
 		right: 0;
@@ -162,30 +163,6 @@
 			&:hover {
 				color: var(--purple-color);
 			}
-		}
-
-		/* Анимации */
-		.fade-enter-active,
-		.fade-leave-active {
-			transition: opacity 0.3s;
-		}
-
-		.fade-enter-from,
-		.fade-leave-to {
-			opacity: 0;
-		}
-
-		.slide-enter-active,
-		.slide-leave-active {
-			transition: transform 0.3s;
-		}
-
-		.slide-enter-from {
-			transform: translateY(-50px);
-		}
-
-		.slide-leave-to {
-			transform: translateY(50px);
 		}
 	}
 </style>

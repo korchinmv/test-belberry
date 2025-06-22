@@ -42,6 +42,7 @@
 
 			@media screen and (width <= 768px) {
 				padding: 12px 16px;
+				font-size: 14px;
 			}
 		}
 
@@ -61,6 +62,10 @@
 		&__input:not(:placeholder-shown) + &__placeholder {
 			font-size: 12px;
 			top: 15px;
+
+			@media screen and (width <= 768px) {
+				top: 10px;
+			}
 		}
 	}
 </style>
