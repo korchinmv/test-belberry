@@ -51,9 +51,14 @@ main {
 	overflow-x: hidden;
 	padding: 0 var(--container-offset);
 	max-width: var(--container-width);
+
+
+	&--large {
+		overflow-x: visible;
+	}
 }
 
-.gradient-text {
+.container .gradient-text {
 	background: linear-gradient(134deg, #0804a1 0%, #9278fa 100%);
 	background-clip: text;
 	-webkit-background-clip: text;

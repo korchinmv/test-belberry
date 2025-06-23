@@ -2,7 +2,7 @@
 
 <template>
 	<section class="services">
-		<div class="container">
+		<div class="container container--large">
 			<div class="services__wrapper">
 				<ElementTitleSection class="services__title" text="Наши услуги" />
 
